@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Include Font Awesome for icons -->
+    <title>Technician Login</title>
+    <style>
+        /* Sidebar Styling */
+        .sidebar {
+            transition: width 0.3s;
+            width: 250px;
+            background-color: #343a40;
+            color: #fff;
+            height: 100vh;
+        }
+
+        .sidebar.closed {
+            width: 60px;
+        }
+
+        .sidebar .nav-link {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 10px 20px;
+            color: #adb5bd;
+        }
+
+        .sidebar.closed .nav-link span {
+            display: none;
+        }
+
+        .sidebar .toggle-btn {
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #495057;
+            color: #fff;
+        }
+
+        /* Chatbot UI Styling */
+        .chatbot-container {
+            background-color: #f7f7f7;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-35%);
+            border-color: #343a40;
+            max-width: 100%;
+            width: 60%; /* Make the chatbot larger */
+            height: 80vh; /* Adjust height */
+        }
+
+        .chatbot-header {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .chatbot-header .title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .chatbot-header .close-btn {
+            cursor: pointer;
+        }
+
+        .chatbot-body {
+            padding: 10px;
+            height: calc(100% - 50px); /* Adjust height to fill the container */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .chatbot-body .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .chatbot-body .options .option {
+            width: calc(33.33% - 10px);
+            margin: 10px 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .chatbot-body .options .option:hover {
+            background-color: #f2f2f2;
+        }
+
+        .chatbot-body .input-container {
+            padding: 10px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .chatbot-body .input-container input[type="text"] {
+            width: calc(100% - 90px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding-right: 100px;
+        }
+
+        .chatbot-body .attach-btn,
+        .chatbot-body .voice-input-btn {
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .chatbot-body .voice-input-btn {
+            margin-left: 0;
+        }
+
+        .option {
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid #343a40;
+        }
+
+        .option span {
+            display: flex;
+            justify-content: center;
+            padding-top: 4rem;
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        /* Ensure responsiveness */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                width: 90%;
+                height: 70vh;
+            }
+
+            .chatbot-body .options .option {
+                width: calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .chatbot-container {
+                width: 95%;
+                height: 60vh;
+            }
+
+            .chatbot-body .options .option {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="d-flex flex-column bg-dark text-white sidebar" id="sidebar">
+            <div class="d-flex align-items-center p-3 border-bottom border-secondary">
+                <div class="toggle-btn" id="toggle-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="fs-3 fw-bold ms-2">
+                    <img src="logo.png" width="40px" height="20px" alt="logo" />
+                </div>
+                <div class="fs-5 ms-2"><a style="text-decoration: none; color: #f2f2f2;" href="Form.html">Menu</a></div>
+            </div>
+            <ul class="nav flex-column flex-grow-1">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                        <i class="fas fa-home me-2"></i>
+                        <span>Start new analysis</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                        <i class="fas fa-user me-2"></i>
+                        <span>Resume analysis</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        <span>Logs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        <span>Report</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                        <i class="fas fa-th-large me-2"></i>
+                        <span>Schedule Repairs</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="border-top border-secondary p-3 d-flex align-items-center">
+                <img src="technician.png" alt="User Profile" class="rounded-circle me-2"
+                    style="width: 30px; height: 30px;">
+                <span class="me-2">Technician</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-grow-1">
+            <!-- Chatbot UI -->
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <span style="padding-left: 44%; font-size: 30px;" class="title">Chatbot</span>
+                    <i class="fas fa-times close-btn"></i>
+                </div>
+                <div class="chatbot-body">
+                    <div class="options">
+                        <div class="option">
+                            <i class="fas fa-question"></i>
+                            <span>Tires</span>
+                        </div>
+                        <div class="option">
+                            <i class="fas fa-info"></i>
+                            <span>Battery</span>
+                        </div>
+                        <div class="option">
+                            <i class="fas fa-phone"></i>
+                            <span>Exterior</span>
+                        </div>
+                        <div class="option">
+                            <i class="fas fa-envelope"></i>
+                            <span>Brakes</span>
+                        </div>
+                        <div class="option">
+                            <i class="fas fa-camera"></i>
+                            <span>Engine</span>
+                        </div>
+                        <div class="option">
+                            <i class="fas fa-microphone"></i>
+                            <span>Voice of Customer</span>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" placeholder="Type a message...">
+                        <label for="image-input" class="fas fa-paperclip attach-btn"></label>
+                        <input type="file" accept="image/*" id="image-input" style="display: none"><b style="padding: 5px;">🖼️</b>
+                        <b class="fas fa-microphone voice-input-btn">🎙️</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    </script>
+    <script>
+        document.getElementById('toggle-btn').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('closed');
+        });
+    </script>
+</body>
+
+</html>
