@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ander Baher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="top-banner">
+            <p>Why wait for a space makeover? Book Ander Baher!</p>
+        </div>
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='ABLogo.png') }}" alt="Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#">Welcome</a></li>
+                    <li><a href="#">Magazine</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Book Us</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </nav>
+            <div class="account">
+                <i class="fas fa-user-circle"></i>
+                <span>My Account</span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your Reliable Interior Design & Outdoors Makeover Expert</h1>
+                <p>for Home, Shop & Office interiors, or Balcony, Terrace, & Gardens transformation, etc.</p>
+                <button>Book Consultation</button>
+            </div>
+        </section>
+    </main>
+    <img src="{{ url_for('static', filename='saba.png') }}" alt="chat button" id="openChatBtn">
+    <div id="chatPopup" class="chat-popup" style="display: none;">
+        <div class="chat-header">
+            <img src="{{ url_for('static', filename='saba.png') }}" alt="SABA" class='saba'>
+            <div class="header-text">
+                <h1>Ask SABA</h1>
+            </div>
+            <span class="closeBtn" id="closeChatBtn">&times;</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="chat-options">
+                <button id="op1">Code of Conduct</button>
+                <button id="op2">Time Off Policy</button>
+                <button id="op3">Remote Work Policy</button>
+                <button id="op4">Performance Management Policy</button>
+                <button id="op5">Intellectual Property Policy</button>
+                <button id="op6">Anti-Discrimination and Harassment Policy</button>
+                <button id="op7">Health and Safety Policy</button>
+                <button id="op8">IT Security Policy</button>
+                <button id="op9">Customer Site Visit Policy</button>
+                <button id="op10">Bring Your Own System (BYOS) Computer Policy</button>
+                <button id="op11">Daily Work Shift Policy</button>
+                <button id="op12">Annual Appraisal Policy</button>
+                <button id="op13">Notice period</button>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <button id="scrollToTopBtn"><i class="fas fa-arrow-up"></i></button>
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+            <button id="runBtn"><i class ="fas fa-mic"></i></button>
+        </div>
+    </div>
+    <div id="chatTooltip" class="chat-tooltip">Chat with SABA</div>
+    <script src="{{ url_for('static', filename='script3.js') }}"></script>
+</body>
+</html>
